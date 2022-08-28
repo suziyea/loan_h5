@@ -1,0 +1,224 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		// {
+		// 	"path": "pages/hello/hello",
+		// 	"style": {
+		// 		"navigationStyle": "custom",
+		// 		"app-plus": {
+		// 			"titleNView": false
+		// 		}
+		// 	}
+		// },
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "首页",
+				"navigationStyle": "custom"
+			}
+		},
+
+		{
+			"path": "pages/404/404",
+			"style": {
+				"navigationBarTitleText": "页面未找到",
+				"navigationStyle": "custom",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/mine/mine",
+			"style": {
+				"navigationBarTitleText": "我的",
+				"navigationStyle": "custom",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/evaluation/real/real",
+			"style": {
+				"navigationBarTitleText": "实名认证",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/evaluation/addBank/addBank",
+			"style": {
+				"navigationBarTitleText": "绑定银行卡",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/product/recommendProduct/recommendProduct",
+			"style": {
+				"navigationBarTitleText": "首页",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/product/reflect/reflect",
+			"style": {
+				"navigationBarTitleText": "提现",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/product/evaluationResults/evaluationResults",
+			"style": {
+				"navigationBarTitleText": "评估",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/login/login",
+			"style": {
+				"navigationBarTitleText": "登录",
+				"navigationStyle": "custom",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/webview/webview",
+			"style": {
+				"navigationBarTitleText": "",
+				"navigationStyle": "custom",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/mine/feedback/feedback",
+			"style": {
+				"navigationBarTitleText": "反馈",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/mine/service/service",
+			"style": {
+				"navigationBarTitleText": "客服中心",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/product/result/result",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/mine/order/order",
+			"style": {
+				"navigationBarTitleText": "我的订单",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/mine/privilege/privilege",
+			"style": {
+				"navigationBarTitleText": "我的权益",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/mine/telPhone/telPhone",
+			"style": {
+				"navigationBarTitleText": "联系客服",
+				"enablePullDownRefresh": false
+			}
+
+		}
+	    ,{
+            "path" : "pages/product/evaluationFirtPay/evaluationFirtPay",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "评估结果",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/pay/pay",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "支付结果",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/payResult/payResult",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "支付结果",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+    ],
+	"subPackages": [{
+		"root": "subpages",
+		"pages": [{
+			"path": "details/details",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "h5PrivacyAgreement/h5PrivacyAgreement",
+			"style": {
+				"navigationBarTitleText": "h5隐私协议",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "assessAgreement/assessAgreement",
+			"style": {
+				"navigationBarTitleText": "会员用户协议",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "appPrivacyAgreement/appPrivacyAgreement",
+			"style": {
+				"navigationBarTitleText": "app隐私协议",
+				"enablePullDownRefresh": false
+			}
+
+		}]
+	}],
+	"tabBar": {
+		"color": "#B4BCCF",
+		"selectedColor": "#ECC6A1",
+		"backgroundColor": "#171D41",
+		// #ifdef APP-PLUS
+		"borderStyle": "#171D41",
+		// #endif
+		// #ifdef H5
+		"borderStyle": "#171D41",
+		// #endif
+		"list": [
+			{
+				"pagePath": "pages/index/index",
+				"text": "首页",
+				"iconPath": "static/tabIcon/home.png",
+				"selectedIconPath": "static/tabIcon/home_select.png"
+			},
+			{
+				"pagePath": "pages/mine/mine",
+				"text": "我的",
+				"iconPath": "static/tabIcon/center.png",
+				"selectedIconPath": "static/tabIcon/center_select.png"
+			}
+		]
+	},
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "瑞信惠",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	},
+	"easycom": {
+		"^u-(.*)": "uview-ui/components/u-$1/u-$1.vue"
+	}
+}
