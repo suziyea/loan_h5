@@ -7,7 +7,7 @@
 					Hello!
 				</view>
 				<view class="apptip_text">
-					欢迎使用牟财金融服务平台
+					欢迎使用瑞信惠金融服务平台
 				</view>
 			</view>
 		</view>
@@ -33,6 +33,9 @@
 								    placeholder="请输入手机号"
 								    border="bottom"
 								    clearable
+									maxlength="13"
+									@input="handleTelInput" 
+									typx="tel"
 								  ></u--input>
 							</u-form-item>
 							<u-form-item label="" prop="smsCode" ref="item2" >
@@ -261,6 +264,24 @@
 					uni.$u.route('/subpages/appPrivacyAgreement/appPrivacyAgreement')
 					return;
 				}
+			},
+			handleTelInput(e) {
+				var len =  this.formContent.phone.length
+				// var {phone} = this.formContent
+				var reg = new RegExp("\\s", "g");
+				var mobile_ = '';
+				this.formContent.phone = this.formContent.phone.replace(reg, "");
+				for (var i = 0; i < len; i++) {
+					if (i == 2 || i == 6) {
+						// charAt(int index)方法是一个能够用来检索特定索引下的字符的String实例的方法。
+						//这里用来检索this.formContent.phone 的index为2和6
+						mobile_ = mobile_ + this.formContent.phone.charAt(i) +
+							" "; //当检索到2和6时，将原本的mobile_值加上新增的this.formContent.phone 值再加一个" "后再赋值给mobile_自己
+					} else {
+						mobile_ += this.formContent.phone.charAt(i);
+					}
+				}
+				this.formContent.phone = mobile_
 			},
 		}
 	}

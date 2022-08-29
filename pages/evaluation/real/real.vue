@@ -1,6 +1,6 @@
 <template>
-	<view class="container">
-		<view class="bgBox">
+	<view class="container u-flex u-flex-column u-flex-items-center ">
+		<!-- <view class="bgBox">
 			<view class="realImg">
 				<image src="/static/img/real.png" mode="aspectFill"></image>
 			</view>
@@ -8,9 +8,9 @@
 				<text class="title">实名认证</text>
 				<text class="desc">为配合国家监管要求，请完成实名认证。</text>
 			</view>
-		</view>
+		</view> -->
 
-		<view class="formList">
+		<!-- 		<view class="formList">
 			<u--form :model="formContent" :rules="rules" ref="uForm" :errorType="errorType">
 				<u-form-item label="" prop="name">
 					<text class="form__title">真实姓名</text>
@@ -31,7 +31,47 @@
 		<view class="btn">
 			<u-button type="primary" :plain="true" class="custom-style" @tap="clickSubmit" :hairline="true" text="下一步">
 			</u-button>
+		</view> -->
+
+		<view class="img_bg">
+			<view class="copywriting">
+				<view class="bigtitle">
+					实名认证
+				</view>
+				<view class="desc">
+					为配合国家监管要求，请完成实名认证。
+				</view>
+			</view>
 		</view>
+
+		<view class="submit_view u-flex u-flex-column ">
+			<view class="top_view u-flex  u-flex-items-center ">
+				使用有效身份证件信息认证
+			</view>
+			<view class="form_info u-flex   u-flex-column  u-flex-items-center  ">
+				<view class="form_list">
+					<u--form labelPosition="left" labelWidth='100' :model="formContent" :rules="rules" ref="formContentRef">
+						<u-form-item label="真实姓名" prop="formContent.phone" ref="item1">
+							<u--input placeholderClass="placeholderClass"
+								v-model="formContent.phone" placeholder="请输入手机号" border="bottom" clearable></u--input>
+						</u-form-item>
+						<u-form-item label="身份证号码" prop="formContent.phone" ref="item1">
+							<u--input placeholderClass="placeholderClass"
+								v-model="formContent.phone" placeholder="请输入手机号" border="bottom" clearable></u--input>
+						</u-form-item>
+					</u--form>
+				</view>
+				<view class="btns u-flex u-flex-center  u-flex-items-center ">
+					下一步
+				</view>
+			</view>
+
+			<!-- <view class="btn">
+				下一步
+			</view> -->
+
+		</view>
+
 	</view>
 </template>
 
@@ -127,9 +167,104 @@
 
 <style lang="scss" scoped>
 	.container {
-		width: 100%;
 		height: 100vh;
-		background-color: #f7f7f7;
+		width: 750rpx;
+		background: #090C34;
+
+		.img_bg {
+			position: relative;
+			width: 750rpx;
+			height: 480rpx;
+			background: url(../../../static/img/real_name_bg.png) no-repeat;
+			background-size: cover;
+			border: 1px solid skyblue;
+			box-sizing: border-box;
+
+			.copywriting {
+				position: absolute;
+				// margin: 36rpx 60rpx;
+
+				top: 36rpx;
+				left: 60rpx;
+				color: #EDDBC3;
+				font-family: PingFangSC-Semibold, PingFang SC;
+
+				.bigtitle {
+					font-size: 48rpx;
+					font-weight: 600;
+					line-height: 66rpx;
+					margin-bottom: 20rpx;
+				}
+
+				.desc {
+					font-size: 24rpx;
+					font-family: PingFangSC-Regular, PingFang SC;
+					font-weight: 400;
+					color: #EDDBC3;
+					line-height: 34rpx;
+				}
+			}
+		}
+
+		.submit_view {
+			width: 662rpx;
+			margin-top: -340rpx;
+
+			.top_view {
+				box-sizing: border-box;
+				position: relative;
+				z-index: 3;
+				width: 100%;
+				height: 100rpx;
+				padding: 0 32rpx;
+				// margin-bottom: @at-root ;
+				top: 64rpx;
+				background: #EDDBC3;
+				border-radius: 16rpx 16rpx 0rpx 0rpx;
+				font-size: 30rpx;
+				font-family: PingFangSC-Medium, PingFang SC;
+				font-weight: 500;
+				color: #873D0A;
+				line-height: 42rpx;
+			}
+
+			.form_info {
+				z-index: 2;
+				width: 662rpx;
+				height: 480rpx;
+				background: linear-gradient(360deg, #F9F9F7 0%, #FDF1E5 100%);
+				border-radius: 16rpx;
+				box-sizing: border-box;
+
+				.form_list {
+					width: 662rpx;
+					height: 320rpx;
+					border-radius: 16rpx;
+					margin-top: 72rpx;
+
+					/deep/ .u-form {
+						margin: 24rpx 32rpx;
+
+						.u-button--success {
+							border: none;
+							font-size: 30rpx;
+							font-family: PingFangSC-Regular, PingFang SC;
+							font-weight: 400;
+							color: #8C5E2D !important;
+							line-height: 42rpx;
+							background: none;
+						}
+					}
+				}
+				.btns {
+					width: 570rpx;
+					height: 88rpx;
+					background: linear-gradient(180deg, #EDDFC5 0%, #CCAC83 100%);
+					border-radius: 44rpx;
+					margin-top: -48rpx;
+				}
+			}
+		}
 
 		.bgBox {
 			width: 100%;
