@@ -1,76 +1,84 @@
 <template>
 	<view class="container" v-if="showFlag">
-		<view class="bgBox">
-			<view class="realImg">
-				<image src="/static/img/real.png" mode="aspectFill"></image>
-			</view>
-			<view class="titleBox">
-				<text class="title">添加收款银行卡</text>
-				<text class="desc">您的信息将被严格保密，请放心添加</text>
+		<view class="img_bg">
+			<view class="copywriting">
+				<view class="bigtitle">
+					添加收款银行卡
+				</view>
+				<view class="desc">
+					您的信息将被严格保密，请放心添加
+				</view>
 			</view>
 		</view>
 
-		<view class="formList">
-			<u--form :model="formContent" :rules="rules" ref="uForm" labelWidth="auto" :errorType="errorType">
-				<u-form-item label="姓名" prop="actual_name" borderBottom ref="item1" style="margin-top: 12rpx;">
-					<u--input inputAlign="right" v-model="formContent.actual_name" border="none" placeholder="请输入姓名"
-						placeholderClass="placeholderClass" suffixIcon="/static/icon/my_name.png"></u--input>
-				</u-form-item>
-				<u-form-item label="身份证号" prop="id_number" borderBottom ref="item2">
-					<u--input inputAlign="right" v-model="formContent.id_number" border="none" placeholder="请输入身份证号"
-						placeholderClass="placeholderClass" suffixIcon="/static/icon/my_idcard.png"></u--input>
-				</u-form-item>
-				<u-form-item label="所属银行" @click="showBankListStatus = true;" prop="bank_name" borderBottom ref="item3">
-					<u--input readonly inputAlign="right" v-model="formContent.bank_name" border="none"
-						placeholder="请选择银行卡所属银行" placeholderClass="placeholderClass"
-						suffixIcon="/static/icon/right.png"></u--input>
-				</u-form-item>
-				<u-form-item label="银行卡号" prop="card_number" borderBottom ref="item4">
-					<u--input inputAlign="right" v-model="formContent.card_number" border="none" placeholder="请输入银行卡号"
-						placeholderClass="placeholderClass" suffixIcon="/static/icon/my_bank.png"></u--input>
-				</u-form-item>
+		<view class="submitInformation u-flex u-flex-center">
+			<view class="formInfo">
+				<u--form :model="formContent" :rules="rules" ref="uForm" labelWidth="auto" :errorType="errorType">
+					<u-form-item label="姓名" prop="actual_name" borderBottom ref="item1">
+						<u--input inputAlign="right" v-model="formContent.actual_name" border="none" placeholder="请输入姓名"
+							placeholderClass="placeholderClass"></u--input>
+					</u-form-item>
+					<u-form-item label="身份证号" prop="id_number" ref="item2">
+						<u--input inputAlign="right" v-model="formContent.id_number" border="none" placeholder="请输入身份证号"
+							placeholderClass="placeholderClass"></u--input>
+					</u-form-item>
+					<view class="fill"></view>
+					<u-form-item label="所属银行" @click="showBankListStatus = true;" prop="bank_name" borderBottom
+						ref="item3">
+						<u--input readonly inputAlign="right" v-model="formContent.bank_name" border="none"
+							placeholder="请选择银行卡所属银行" placeholderClass="placeholderClass"
+							suffixIcon="/static/icon/right.png"></u--input>
+					</u-form-item>
+					<u-form-item label="银行卡号" prop="card_number" ref="item4">
+						<u--input inputAlign="right" v-model="formContent.card_number" border="none"
+							placeholder="请输入银行卡号" placeholderClass="placeholderClass"></u--input>
+					</u-form-item>
+					<view class="fill"></view>
+					<u-form-item label="预留手机号" prop="reserve_phone" borderBottom ref="item5">
+						<u--input inputAlign="right" v-model="formContent.reserve_phone" border="none"
+							placeholder="请输入手机号" placeholderClass="placeholderClass"></u--input>
+					</u-form-item>
 
-				<u-form-item label="预留手机号" prop="reserve_phone" borderBottom ref="item5">
-					<u--input inputAlign="right" v-model="formContent.reserve_phone" border="none" placeholder="请输入手机号"
-						placeholderClass="placeholderClass" suffixIcon="/static/icon/my_phone.png"></u--input>
-				</u-form-item>
-
-				<u-form-item label="验证码">
-					<!-- <u--input  v-model="phone" border suffixIcon="/static/icon/my_phone.png"></u--input> -->
-					<!-- 注意：由于兼容性差异，如果需要使用前后插槽，nvue下需使用u--input，非nvue下需使用u-input -->
-					<!-- #ifndef APP-NVUE -->
-					<u-input v-model="formContent.code" inputAlign="right" type="number" maxlength='6' border="none"
-						placeholder="请输入验证码" placeholderClass="placeholderClass">
+					<u-form-item label="验证码" borderBottom>
+						<!-- <u--input  v-model="phone" border suffixIcon="/static/icon/my_phone.png"></u--input> -->
+						<!-- 注意：由于兼容性差异，如果需要使用前后插槽，nvue下需使用u--input，非nvue下需使用u-input -->
+						<!-- #ifndef APP-NVUE -->
+						<u-input v-model="formContent.code" inputAlign="right" type="number" maxlength='6' border="none"
+							placeholder="请输入验证码" placeholderClass="placeholderClass">
+							<!-- #endif -->
+							<!-- #ifdef APP-NVUE -->
+							<u--input v-model="formContent.code" inputAlign="right" type="number" maxlength='6'
+								border="none" placeholder="请输入验证码" placeholderClass="placeholderClass" type="number">
+								<!-- #endif -->
+								<template slot="suffix">
+									<u-code ref="uCode" @change="codeChange" seconds="60" changeText="X秒重新获取"></u-code>
+									<u-button @tap="getCode" :text="tips"
+										:class="!handleSmsCodeStatus ? 'disable_pointer' : '' " type="success"
+										size="mini">
+									</u-button>
+								</template>
+								<!-- #ifndef APP-NVUE -->
+						</u-input>
 						<!-- #endif -->
 						<!-- #ifdef APP-NVUE -->
-						<u--input v-model="formContent.code" inputAlign="right" type="number" maxlength='6'
-							border="none" placeholder="请输入验证码" placeholderClass="placeholderClass" type="number">
-							<!-- #endif -->
-							<template slot="suffix">
-								<u-code ref="uCode" @change="codeChange" seconds="60" changeText="X秒重新获取"></u-code>
-								<u-button @tap="getCode" :text="tips"
-									:class="!handleSmsCodeStatus ? 'disable_pointer' : '' " type="success" size="mini">
-								</u-button>
-							</template>
-							<!-- #ifndef APP-NVUE -->
-					</u-input>
-					<!-- #endif -->
-					<!-- #ifdef APP-NVUE -->
-					</u--input>
-					<!-- #endif -->
-				</u-form-item>
+						</u--input>
+						<!-- #endif -->
+					</u-form-item>
 
-			</u--form>
+				</u--form>
+
+				<view class="btn_view u-flex u-flex-center ">
+					<view class="btnContent u-flex u-flex-center  u-flex-items-center ">
+					下一步
+				</view>
+				</view>
+			</view>
 		</view>
+
 		<u-action-sheet :closeOnClickOverlay="true" :closeOnClickAction="true" :show="showBankListStatus"
 			:actions="bankList" title="请选择银行" @close="showBankListStatus = false" @select="bankSelect">
 		</u-action-sheet>
 
-		<view class="btn">
-			<u-button type="primary" :plain="true" class="custom-style" :disabled='!(formContent)' @click="clickSubmit"
-				:hairline="true" text="完成">
-			</u-button>
-		</view>
 		<u-toast ref="uToast"></u-toast>
 	</view>
 </template>
@@ -91,7 +99,7 @@
 		data() {
 			return {
 				errorType: 'toast',
-				showFlag: false,
+				showFlag: true,
 				showBankListStatus: false,
 				tips: '获取验证码',
 				seconds: 60,
@@ -351,10 +359,115 @@
 </script>
 
 <style lang="scss" scoped>
+
 	.container {
 		width: 100%;
 		height: 100vh;
-		background: #F6F6F6;
+		background: #090C34;
+
+		.img_bg {
+			position: relative;
+			width: 750rpx;
+			height: 480rpx;
+			background: url(../../../static/img/real_name_bg.png) no-repeat;
+			background-size: cover;
+			// border: 1px solid skyblue;
+			box-sizing: border-box;
+
+			.copywriting {
+				position: absolute;
+				// margin: 36rpx 60rpx;
+
+				top: 36rpx;
+				left: 60rpx;
+				color: #EDDBC3;
+				font-family: PingFangSC-Semibold, PingFang SC;
+
+				.bigtitle {
+					font-size: 48rpx;
+					font-weight: 600;
+					line-height: 66rpx;
+					margin-bottom: 20rpx;
+				}
+
+				.desc {
+					font-size: 24rpx;
+					font-family: PingFangSC-Regular, PingFang SC;
+					font-weight: 400;
+					color: #EDDBC3;
+					line-height: 34rpx;
+				}
+			}
+		}
+
+		.submitInformation {
+			width: 100%;
+			margin-top: -276rpx;
+			position: relative;
+			z-index: 2;
+
+			.formInfo {
+				width: 662rpx;
+				height: 916rpx;
+				background: linear-gradient(360deg, #F9F9F7 0%, #FDF1E5 100%);
+				border-radius: 16rpx;
+				padding: 0rpx 32rpx;
+				box-sizing: border-box;
+
+				.fill {
+					width: 662rpx;
+					height: 12rpx;
+					background: #EDDBC3;
+					margin: 0rpx -32rpx;
+
+					opacity: 0.29;
+				}
+
+				.btn_view {
+					width: 100%;
+					margin-top: 48rpx;
+				box-sizing: border-box;
+
+					.btnContent {
+						width: 570rpx;
+					height: 88rpx;
+					background: linear-gradient(180deg, #EDDFC5 0%, #CCAC83 100%);
+					border-radius: 44rpx;
+					}
+				}
+
+				/deep/ .u-form {
+					// margin: 24rpx 32rpx;
+					.placeholderClass {
+						color: #9C9B98 !important;
+					}
+
+
+					.u-button--success {
+						border: none;
+						font-size: 30rpx;
+						font-family: PingFangSC-Regular, PingFang SC;
+						font-weight: 400;
+						color: #8C5E2D !important;
+						line-height: 42rpx;
+						background: none;
+					}
+
+					.u-form-item__body {
+						padding: 36rpx 0 !important;
+					}
+
+					.u-form-item__body__left__content__label {
+						width: 224rpx;
+						font-size: 28rpx;
+						font-family: PingFangSC-Regular, PingFang SC;
+						font-weight: 400;
+						color: #5A5757 !important;
+						line-height: 40rpx;
+					}
+				}
+			}
+		}
 
 		.bgBox {
 			width: 100%;

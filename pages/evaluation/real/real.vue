@@ -50,14 +50,18 @@
 			</view>
 			<view class="form_info u-flex   u-flex-column  u-flex-items-center  ">
 				<view class="form_list">
-					<u--form labelPosition="left" labelWidth='100' :model="formContent" :rules="rules" ref="formContentRef">
-						<u-form-item label="真实姓名" prop="formContent.phone" ref="item1">
-							<u--input placeholderClass="placeholderClass"
-								v-model="formContent.phone" placeholder="请输入手机号" border="bottom" clearable></u--input>
+					<u--form  labelWidth='100' borderBottom :model="formContent" :rules="rules" ref="formContentRef">
+						<!-- <u-form-item label="姓名" prop="actual_name" borderBottom ref="item1" style="margin-top: 12rpx;">
+							<u--input inputAlign="right" v-model="formContent.actual_name" border="none" placeholder=""
+								placeholderClass="placeholderClass" suffixIcon="/static/icon/my_name.png"></u--input>
+						</u-form-item> -->
+						<u-form-item  label="真实姓名" borderBottom prop="formContent.name" ref="item1">
+							<u--input inputAlign="right"  borderBottom placeholderClass="placeholderClass"
+								v-model="formContent.name" placeholder="请如实填写您的姓名" border="none" clearable></u--input>
 						</u-form-item>
-						<u-form-item label="身份证号码" prop="formContent.phone" ref="item1">
-							<u--input placeholderClass="placeholderClass"
-								v-model="formContent.phone" placeholder="请输入手机号" border="bottom" clearable></u--input>
+						<u-form-item label="身份证号" borderBottom prop="formContent.idcard" ref="item1">
+							<u--input inputAlign="right" borderBottom placeholderClass="placeholderClass"
+								v-model="formContent.idcard" placeholder="请输入身份证号" border="none" clearable></u--input>
 						</u-form-item>
 					</u--form>
 				</view>
@@ -253,6 +257,17 @@
 							color: #8C5E2D !important;
 							line-height: 42rpx;
 							background: none;
+						}
+						.u-form-item__body {
+							padding: 36rpx 0 !important;
+						}
+						.u-form-item__body__left__content__label {
+							width: 224rpx;
+							font-size: 28rpx;
+							font-family: PingFangSC-Regular, PingFang SC;
+							font-weight: 400;
+							color: #5A5757 !important;
+							line-height: 40rpx;
 						}
 					}
 				}

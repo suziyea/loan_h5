@@ -6,7 +6,7 @@
 			<u-loading-page :loading="loadingStatus" loadingColor="#1B8DFF" loading-text="loading..."
 				bg-color="transparent"></u-loading-page>
 		</view>
-		<view class="content">
+		<!-- <view class="content">
 			<view class="title_tips">恭喜！您的审核已通过，额度为</view>
 			<view class="bg u-flex u-flex-column u-row-center u-flex-items-center ">
 				<view class="countStyle u-flex u-flex-column u-row-centeru-flex-items-center ">
@@ -14,7 +14,7 @@
 					<u-count-to :endVal="userAssessInfo.loan_amount" separator="," class="count"></u-count-to>
 				</view>
 			</view>
-			<!-- 消息轮播 -->
+			消息轮播
 			<view class="tipsBox">
 				<u-notice-bar :text="messageArr" icon="volume" direction="column" speed="250" url=""></u-notice-bar>
 			</view>
@@ -39,25 +39,21 @@
 				</u-row>
 
 			</view>
-		</view>
+		</view> -->
 
-		<view class="btn">
-			<!-- <u-button :type="getInsufficientBalance ? 'warning' : 'primary'" @click="clickSubmit" :plain="true"
-				:class="getInsufficientBalance ? '' : 'custom-style'" :hairline="true"
-				:text="getInsufficientBalance ? '重新绑卡' : '立即提现'">
-			</u-button> -->
+		<!-- <view class="btn">
 			<u-button type="primary" @click="clickSubmit" :plain="true" class="custom-style" :hairline="true"
 				text="立即提现">
 			</u-button>
-		</view>
-		<view class="read u-flex u-flex-items-center">
+		</view> -->
+		<!-- <view class="read u-flex u-flex-items-center">
 			<view :class="[!selectRadio ? 'icon-this-option' : 'icon-has-checked']" @click="checkboxChange"></view>
 			<view class="wenan">
 				<text class="read_tip">我已经同意<text class="blue"
 						@click="jumpContent('platform')">{{` 《评估协议》 `}}</text>和<text class="blue"
 						@click="jumpContent('hide')">{{` 《隐私协议》 `}}</text></text>
 			</view>
-		</view>
+		</view> -->
 		<u-popup class="popupView" :closeable='closeable' :closeOnClickOverlay="closeOnClickOverlay"
 			overlayOpacity='0.8' :show="showPopup" :round="10" mode="center" @close="close" @open="open">
 			<view class="popupCon u-flex u-flex-column u-flex-items-center">
@@ -74,8 +70,56 @@
 				<text v-if="!restCode"><text class="restSms">{{`${seconds} `}}</text>秒后重发短信验证码</text>
 				<text class="restSms" v-else @click="restSmsCode">重新获取</text>
 			</view>
-
 		</u-popup>
+
+		<view class="img_bg">
+			<view class="copywriting">
+				<!-- <view class="bigtitle">
+					添加收款银行卡
+				</view>
+				<view class="desc">
+					您的信息将被严格保密，请放心添加
+				</view> -->
+			</view>
+		</view>
+
+		<view class="submitInformation u-flex u-flex-center">
+			<view class="formInfo u-flex  u-flex-center">
+				<view class="inner_view u-flex u-flex-column  u-flex-items-center">
+					<view class="title u-flex u-flex-center">
+						恭喜！您的审核已通过!
+					</view>
+					<view class="tip u-flex u-flex-center">
+						您的额度(元)
+					</view>
+					<view class="amount u-flex u-flex-center">
+						200000
+					</view>
+					<!-- <view class="notice_view u-flex u-flex-center u-flex-items-center">
+						<u-notice-bar :text="messageArr" class="style_bar_text" icon="volume" direction="column" speed="250" url=""></u-notice-bar>
+					</view> -->
+					<view class="info u-flex u-flex-center">
+						<view class="label">
+							预计服务费
+						</view>
+						<view class="value">
+							299元
+						</view>
+					</view>
+					<view class="info u-flex u-flex-center">
+						<view class="label">
+							提现到您的
+						</view>
+						<view class="value">
+							银行 尾号8323
+						</view>
+					</view>
+				</view>
+
+			</view>
+		</view>
+
+
 	</view>
 </template>
 
@@ -98,7 +142,7 @@
 		},
 		data() {
 			return {
-				showDialog: true,
+				showDialog: false,
 				seconds: 60,
 				restCode: false,
 				messageArr: ['186****0764 总借款共计12000元', '186****0765 总借款共计12000元', '186****0766 总借款共计12000元'],
@@ -320,12 +364,117 @@
 	.container {
 		width: 100%;
 		min-height: 100vh;
-		background: #F7F7F7;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		padding: 0 32rpx;
-		box-sizing: border-box;
+		background: #090D34;
+
+		.img_bg {
+			position: relative;
+			width: 750rpx;
+			height: 480rpx;
+			background: url(../../../static/img/reflect_bg.png) no-repeat;
+			background-size: cover;
+			// border: 1px solid skyblue;
+			box-sizing: border-box;
+		}
+
+		.submitInformation {
+			width: 100%;
+			margin-top: -322rpx;
+			position: relative;
+			z-index: 2;
+
+			.formInfo {
+				width: 662rpx;
+				height: 772rpx;
+				background: linear-gradient(360deg, #F9F9F7 0%, #FDF1E5 100%);
+				border-radius: 16rpx;
+				// padding: 0rpx 32rpx;
+				box-sizing: border-box;
+				.inner_view {
+					width: 624rpx;
+					height: 732rpx;
+					border-radius: 16rpx;
+					border: 2rpx solid #E5BA71;
+					padding: 32rpx;
+					margin: 20rpx;
+					box-sizing: border-box;
+					.title {
+						width: 100%;
+						font-size: 48rpx;
+						font-family: PingFangSC-Medium, PingFang SC;
+						font-weight: 500;
+						color: #341C0B;
+						line-height: 66rpx;
+						margin: 94rpx 0rpx 52rpx 0;
+					}
+					.tip {
+						width: 100%;
+						font-size: 28rpx;
+						font-family: PingFangSC-Medium, PingFang SC;
+						font-weight: 500;
+						color: #B5804F;
+						line-height: 40rpx;
+						margin-bottom: 4rpx;
+					}
+					.amount {
+						width: 100%;
+						font-size: 120rpx;
+						font-family: DINAlternate-Bold, DINAlternate;
+						font-weight: bold;
+						color: #B5804F;
+						line-height: 140rpx;
+						margin-bottom: 32rpx;
+					}
+					.notice_view {
+						width: 454rpx;
+						height: 60rpx;
+						background: #242E5D;
+						border-radius: 30rpx;
+						.style_bar_text {
+							font-size: 24rpx;
+							font-family: PingFangSC-Medium, PingFang SC;
+							font-weight: 500;
+							color: #AFB6CE;
+							line-height: 34rpx;
+							// -webkit-background-clip: text;
+							// -webkit-text-fill-color: transparent;
+						}
+						/deep/ .u-notice-bar {
+							width: 454rpx;
+							height: 60rpx;
+							background: #242E5D !important;
+							border-radius: 30rpx;
+							font-size: 24rpx !important;
+							font-family: PingFangSC-Medium, PingFang SC;
+							font-weight: 500;
+							color: #AFB6CE !important;
+							line-height: 34rpx;
+						}
+					}
+					.info {
+						width: 100%;
+						// border: 1px solid red;
+						margin-bottom: 30rpx;
+						.label {
+							width: 224rpx;
+							height: 40rpx;
+							font-size: 28rpx;
+							font-family: PingFangSC-Regular, PingFang SC;
+							font-weight: 400;
+							color: #5A5757;
+							line-height: 40rpx;
+						}
+						.value {
+							margin-left: auto;
+							font-size: 30rpx;
+							font-family: PingFangSC-Regular, PingFang SC;
+							font-weight: 400;
+							color: #312D2D;
+							line-height: 42rpx;
+						}
+					}
+				}
+			}
+		}
 
 		.content {
 			width: 686rpx;

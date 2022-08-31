@@ -165,7 +165,7 @@ $mc-normal-font-color: #333333;
 }
 
 /deep/ .placeholderClass {
-		// pointer-events: none;
+		pointer-events: none;
 		height: 36rpx;
 		font-size: 24rpx;
 		font-family: PingFangSC-Regular, PingFang SC;

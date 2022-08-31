@@ -162,7 +162,7 @@
 					// 	this.$refs.uCode.start();
 					// }, 2000);
 					sendSMS({
-							"phone": this.formContent.phone
+							"phone": this.formContent.phone.replace(/\s*/g,"")
 						})
 						.then((res) => {
 							if (res.code === 100000) {
@@ -217,7 +217,7 @@
 					}
 					this.SETDEVICE(loginHeaderObj)
 					login({
-							phone: phone,
+							phone: phone.replace(/\s*/g,""),
 							code: smsCode,
 						}, {
 							header: {
