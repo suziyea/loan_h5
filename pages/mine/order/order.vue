@@ -1,5 +1,5 @@
 <template>
-	<view class="container" :class="addClassName" v-if="showOrderFlag">
+	<!-- <view class="container" :class="addClassName" v-if="showOrderFlag">
 		<view class="empty" v-if="emptyStatus">
 			<u-empty mode="order" :text="emptyText" icon="http://cdn.uviewui.com/uview/empty/order.png">
 			</u-empty>
@@ -18,6 +18,15 @@
 				</u-list-item>
 			</u-list>
 		</view>
+	</view> -->
+	<view class="container">
+		<u-sticky bgColor="#fff">
+			<u-tabs lineColor="#EDDBC3" lineWidth="80rpx" :scrollable="false" :list="list1"
+				itemStyle="width:250rpx; height: 88rpx; padding:0rpx;"
+				activeStyle="font-size: 28rpx;font-weight: 500;color: #EDDBC3;" @click="click">
+
+			</u-tabs>
+		</u-sticky>
 	</view>
 </template>
 
@@ -31,6 +40,14 @@
 				emptyText: '暂无订单',
 				orderList: [],
 				showOrderFlag: false,
+				list1: [{
+					name: '全部',
+				}, {
+					name: '已支付',
+				}, {
+					name: '未支付'
+				}],
+				ak: ''
 			}
 		},
 		created() {
@@ -74,6 +91,10 @@
 
 		},
 		methods: {
+			click(item) {
+				console.log('item', item);
+				this.ak = item;
+			},
 			getInitList() {
 				getMyOrderList({}).then((res) => {
 					if (res.code === 100000) {
@@ -113,6 +134,17 @@
 	.container {
 		width: 100%;
 		min-height: 100vh;
+
+		/deep/ .u-tabs__wrapper {
+			width: 750rpx;
+			height: 88rpx;
+			background: #090D34;
+			font-size: 28rpx;
+			font-family: PingFangSC-Regular, PingFang SC;
+			font-weight: 400;
+			color: #EDDBC3;
+			line-height: 40rpx;
+		}
 
 		.order_list {
 			/deep/ .u-cell__left-icon-wrap {
