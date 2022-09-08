@@ -20,13 +20,43 @@
 		</view>
 	</view> -->
 	<view class="container">
-		<u-sticky bgColor="#fff">
-			<u-tabs lineColor="#EDDBC3" lineWidth="80rpx" :scrollable="false" :list="list1"
-				itemStyle="width:250rpx; height: 88rpx; padding:0rpx;"
-				activeStyle="font-size: 28rpx;font-weight: 500;color: #EDDBC3;" @click="click">
+		<!-- <u-sticky bgColor="#fff"> -->
+		<u-tabs lineColor="#EDDBC3" lineWidth="80rpx" :scrollable="false" :list="topBarList"
+			itemStyle="width:250rpx; height: 88rpx; padding:0rpx;"
+			activeStyle="font-size: 28rpx;font-weight: 500;color: #EDDBC3;" @click="click">
+		</u-tabs>
+		<!-- </u-sticky> -->
 
-			</u-tabs>
-		</u-sticky>
+		<swiper :current='topBarIndex'>
+
+			<swiper-item v-for="(item,index) in topBarList" :key="index">
+				<view class="orderRecord u-flex u-flex-column u-flex-items-center">
+					<view class="orderinfo u-flex u-flex-center u-flex-items-center ">
+						<view class="name">
+							<view class="title">
+								第二笔付款
+							</view>
+							<view class="date">
+								2022-08-08 19:23:33
+							</view>
+						</view>
+						<view class="status u-flex u-flex-center u-flex-items-center successBgColor">
+							未支付
+						</view>
+						<view class="money">
+							0.02<text class="smallText">元</text>
+						</view>
+					</view>
+					<view class="orderinfo">
+
+					</view>
+					<view class="orderinfo">
+
+					</view>
+				</view>
+			</swiper-item>
+
+		</swiper>
 	</view>
 </template>
 
@@ -40,14 +70,14 @@
 				emptyText: '暂无订单',
 				orderList: [],
 				showOrderFlag: false,
-				list1: [{
+				topBarList: [{
 					name: '全部',
 				}, {
 					name: '已支付',
 				}, {
 					name: '未支付'
 				}],
-				ak: ''
+				topBarIndex: ''
 			}
 		},
 		created() {
@@ -93,7 +123,7 @@
 		methods: {
 			click(item) {
 				console.log('item', item);
-				this.ak = item;
+				this.topBarIndex = item.index;
 			},
 			getInitList() {
 				getMyOrderList({}).then((res) => {
@@ -134,16 +164,96 @@
 	.container {
 		width: 100%;
 		min-height: 100vh;
+		background: #F6F6F6;
 
 		/deep/ .u-tabs__wrapper {
 			width: 750rpx;
-			height: 88rpx;
+			// height: 88rpx;
+			height: 100%;
 			background: #090D34;
 			font-size: 28rpx;
 			font-family: PingFangSC-Regular, PingFang SC;
 			font-weight: 400;
 			color: #EDDBC3;
 			line-height: 40rpx;
+		}
+		/deep/ .uni-swiper-wrapper {
+			height: 1800rpx !important;
+		}
+
+		.orderRecord {
+			width: 100%;
+
+			.orderinfo {
+				width: 670rpx;
+				height: 128rpx;
+				background: #FFFFFF;
+				border-radius: 16rpx;
+				margin-top: 36rpx;
+				padding: 0 24rpx;
+				box-sizing: border-box;
+
+				.name {
+					width: 256rpx;
+					font-family: PingFangSC-Medium, PingFang SC;
+
+					.title {
+						font-size: 30rpx;
+						font-weight: 500;
+						color: #060503;
+						line-height: 42rpx;
+					}
+
+					.date {
+						font-size: 24rpx;
+						font-weight: 400;
+						color: #9C9B98;
+						line-height: 34rpx;
+					}
+				}
+
+				.status {
+					width: 144rpx;
+					height: 40rpx;
+					border-radius: 24rpx;
+					font-size: 28rpx;
+					font-weight: 500;
+					margin-left: 56rpx;
+				}
+
+				.orangeBgColor {
+					background: rgba(244, 138, 14, 0.15);
+					color: #F48A0E;
+					
+				}
+				
+
+				.successBgColor {
+					background: rgba(111, 208, 40, 0.15);
+					color: #6FD028;
+				}
+
+				.errorBgColor {
+					background: rgba(241, 107, 111, 0.15);
+					color: #F16B6F
+				}
+
+				.money {
+					margin-left: auto;
+					font-size: 36rpx;
+					font-family: PingFangSC-Semibold, PingFang SC;
+					font-weight: 600;
+					color: #B5804F;
+					line-height: 50rpx;
+					.smallText {
+						font-size: 20rpx;
+						font-family: PingFangSC-Semibold, PingFang SC;
+						font-weight: 600;
+						color: #B5804F;
+						line-height: 28rpx;
+					}
+				}
+			}
 		}
 
 		.order_list {

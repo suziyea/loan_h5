@@ -4,6 +4,7 @@
 		<template v-else>
 			<home :userStatus="+(this.userInfo.status) || 0"></home>
 		</template>
+		<Tarbar currentPage="index"></Tarbar>
 	</view>
 </template>
 
@@ -16,10 +17,12 @@
 	} from "@/config/api/user.js";
 	import home from './components/home.vue'
 	import product from './components/product.vue'
+	import Tarbar from '@/components/tabbar/Tarbar.vue'
 	export default {
 		components: {
 			home,
-			product
+			product,
+			Tarbar
 		},
 		data() {
 			return {

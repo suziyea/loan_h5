@@ -55,6 +55,7 @@
 				:showCancelButton="true" @cancel=" showModal = false" :content='content'></u-modal>
 			<!-- <u-button @click="show = true">打开</u-button> -->
 		</view>
+		<Tarbar currentPage="mine"></Tarbar>
 	</view>
 
 </template>
@@ -66,11 +67,12 @@
 	} from 'vuex'
 	import common from '@/utils/common'
 	import store from "@/store"
-
+	import Tabbar from '@/components/tabbar/Tarbar.vue'
 	import {
 		getQy,
 		getUserInfo
 	} from "@/config/api/user.js";
+	import Tarbar from '@/components/tabbar/Tarbar.vue'
 
 	export default {
 		data() {
@@ -124,6 +126,9 @@
 				content: '您好，请先完成登录！',
 				confirmText: '去登录',
 			};
+		},
+		components: {
+			Tarbar,
 		},
 		methods: {
 			...mapMutations(['LOGOUT']),

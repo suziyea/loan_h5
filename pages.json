@@ -109,6 +109,7 @@
 			"path": "pages/mine/order/order",
 			"style": {
 				"navigationBarTitleText": "我的订单",
+				"navigationStyle": "custom",
 				"enablePullDownRefresh": false
 			}
 
@@ -154,6 +155,16 @@
             }
             
         }
+        ,{
+            "path" : "pages/product/apply/apply",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+				"navigationStyle": "custom",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"subPackages": [{
 		"root": "subpages",
@@ -187,31 +198,31 @@
 
 		}]
 	}],
-	"tabBar": {
-		"color": "#B4BCCF",
-		"selectedColor": "#ECC6A1",
-		"backgroundColor": "#171D41",
-		// #ifdef APP-PLUS
-		"borderStyle": "#171D41",
-		// #endif
-		// #ifdef H5
-		"borderStyle": "#171D41",
-		// #endif
-		"list": [
-			{
-				"pagePath": "pages/index/index",
-				"text": "首页",
-				"iconPath": "static/tabIcon/home.png",
-				"selectedIconPath": "static/tabIcon/home_select.png"
-			},
-			{
-				"pagePath": "pages/mine/mine",
-				"text": "我的",
-				"iconPath": "static/tabIcon/center.png",
-				"selectedIconPath": "static/tabIcon/center_select.png"
-			}
-		]
-	},
+	// "tabBar": {
+	// 	"color": "#B4BCCF",
+	// 	"selectedColor": "#ECC6A1",
+	// 	"backgroundColor": "#171D41",
+	// 	// #ifdef APP-PLUS
+	// 	"borderStyle": "#171D41",
+	// 	// #endif
+	// 	// #ifdef H5
+	// 	"borderStyle": "#171D41",
+	// 	// #endif
+	// 	"list": [
+	// 		{
+	// 			"pagePath": "pages/index/index",
+	// 			"text": "首页",
+	// 			"iconPath": "static/tabIcon/home.png",
+	// 			"selectedIconPath": "static/tabIcon/home_select.png"
+	// 		},
+	// 		{
+	// 			"pagePath": "pages/mine/mine",
+	// 			"text": "我的",
+	// 			"iconPath": "static/tabIcon/center.png",
+	// 			"selectedIconPath": "static/tabIcon/center_select.png"
+	// 		}
+	// 	]
+	// },
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "瑞信惠",
