@@ -13,9 +13,9 @@
 		</view>
 
 		<!-- 产品介绍 -->
-		<view class="introduceProduct u-flex u-flex-center u-flex-items-center">
-			<view class="introduce u-flex u-flex-column u-flex-center u-flex-items-center">
-				<view class="topbg u-flex u-flex-center u-flex-items-center">
+		<view class="introduceProductView u-flex u-flex-center u-flex-items-center">
+			<view class="introduceContainer u-flex u-flex-column u-flex-center u-flex-items-center">
+				<view class="innerTopBg u-flex u-flex-center u-flex-items-center">
 					<view class="lineicon">
 						<image src="/static/icon/line_icon.png" mode="aspectFill"></image>
 					</view>
@@ -26,9 +26,10 @@
 						<image src="/static/icon/line_icon.png" mode="aspectFill"></image>
 					</view>
 				</view>
-				<view class="content u-flex u-flex-center ">
-					<view class="productinfo u-flex  u-flex-wrap ">
-						<!-- <view class="introduceTips u-flex">
+				<view class="innerView">
+					<!-- 四大优势 -->
+					<view class="usageTips u-flex  u-flex-wrap ">
+						<view class="singleUsage u-flex">
 							<view class="introduceIcon">
 								<image src="../../../static/icon/apply_1.png" mode=""></image>
 							</view>
@@ -41,20 +42,7 @@
 								</view>
 							</view>
 						</view>
-						<view class="introduceTips u-flex">
-							<view class="introduceIcon">
-								<image src="../../../static/icon/apply_1.png" mode=""></image>
-							</view>
-							<view class="introduceDesc">
-								<view class="title">
-									快速审核
-								</view>
-								<view class="desc">
-									持牌机构专属审核通道，提高下款效率。
-								</view>
-							</view>
-						</view> -->
-						<!-- <view class="introduceTips u-flex">
+						<view class="singleUsage u-flex  ">
 							<view class="introduceIcon">
 								<image src="../../../static/icon/apply_1.png" mode=""></image>
 							</view>
@@ -67,8 +55,7 @@
 								</view>
 							</view>
 						</view>
-
-						<view class="introduceTips u-flex">
+						<view class="singleUsage u-flex ">
 							<view class="introduceIcon">
 								<image src="../../../static/icon/apply_1.png" mode=""></image>
 							</view>
@@ -80,12 +67,26 @@
 									持牌机构专属审核通道，提高下款效率。
 								</view>
 							</view>
-						</view> -->
+						</view>
+						<view class="singleUsage u-flex ">
+							<view class="introduceIcon">
+								<image src="../../../static/icon/apply_1.png" mode=""></image>
+							</view>
+							<view class="introduceDesc">
+								<view class="title">
+									快速审核
+								</view>
+								<view class="desc">
+									持牌机构专属审核通道，提高下款效率。
+								</view>
+							</view>
+						</view>
 					</view>
-					<view class="line u-flex u-flex-center  ">
-
-					</view>
+					<!-- line -->
+					<view class="line"></view>
 				</view>
+				
+
 			</view>
 		</view>
 	</view>
@@ -120,32 +121,40 @@
 			box-sizing: border-box;
 		}
 
-		.introduceProduct {
+		.introduceProductView {
 			margin-top: -102rpx;
 			position: relative;
+			border: 1px solid red;
+			width: 750rpx;
+			height: 732rpx;
+			box-sizing: border-box;
 
-			.introduce {
+			.introduceContainer {
 				width: 662rpx;
 				height: 732rpx;
 				background: linear-gradient(360deg, #F9F9F7 0%, #FDF1E5 100%);
 				border-radius: 16rpx;
+				position: relative;
 
-				.content {
+				.innerView {
 					width: 624rpx;
-					height: 692rpx;
+					height: 693rpx;
 					border-radius: 16rpx;
 					border: 2rpx solid #E5BA71;
+					box-sizing: border-box;
+					padding: 20rpx;
 
-					.productinfo {
-						// width: 624rpx;
+					// 四大优势
+					.usageTips {
 						width: 100%;
 						height: 272rpx;
-						// border-radius: 16rpx;
-						border: 2rpx solid red;
-						padding-top: 20px;
-						box-sizing: border-box;
+						// height: 1000rpx;
+						border: 1px solid gold;
 
-						.introduceTips {
+						.singleUsage {
+							// width: 100%;
+							width: 266rpx;
+							height: 104rpx;
 							margin: 16rpx 0 24rpx 0;
 
 							.introduceIcon {
@@ -159,8 +168,10 @@
 							}
 
 							.introduceDesc {
+								// width: 268rpx;
+								// width: 250rpx;
 								.title {
-									width: 122rpx;
+									// width: 122rpx;
 									font-size: 30rpx;
 									font-family: PingFangSC-Medium, PingFang SC;
 									font-weight: 500;
@@ -169,7 +180,8 @@
 								}
 
 								.desc {
-									width: 210rpx;
+									// width: 105px;
+									// height: 28px;
 									font-size: 20rpx;
 									font-family: PingFangSC-Regular, PingFang SC;
 									font-weight: 400;
@@ -179,18 +191,44 @@
 							}
 						}
 					}
-
-
+					.line {
+						width: 564rpx;
+						height: 2rpx;
+						// background: #EDDBC3;
+						background: green;
+						opacity: 0.29;
+					}
 				}
 
-				.line {
-					width: 564rpx;
-					height: 2rpx;
-					background: #EDDBC3;
-					background: red;
-					margin-top: 30rpx;
-					opacity: 0.29;
+				.innerTopBg {
+					position: absolute;
+					top: -10rpx;
+					width: 284rpx;
+					height: 56rpx;
+					background: url(../../../static/img/apply_content_top.png) no-repeat;
+					background-size: cover;
+
+					.lineicon {
+						margin: 0 20rpx;
+
+						image {
+							width: 16rpx;
+							height: 20rpx;
+						}
+					}
+
+					.title {
+						color: #B5804F;
+					}
 				}
+			}
+
+			.introduce {
+				width: 662rpx;
+				height: 732rpx;
+				background: linear-gradient(360deg, #F9F9F7 0%, #FDF1E5 100%);
+				border-radius: 16rpx;
+
 
 				.topbg {
 					position: absolute;

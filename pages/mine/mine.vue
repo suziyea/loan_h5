@@ -55,7 +55,9 @@
 				:showCancelButton="true" @cancel=" showModal = false" :content='content'></u-modal>
 			<!-- <u-button @click="show = true">打开</u-button> -->
 		</view>
-		<Tarbar currentPage="mine"></Tarbar>
+		<view class="tab">
+			<Tarbar currentPage="mine"></Tarbar>
+		</view>
 	</view>
 
 </template>
@@ -243,7 +245,7 @@
 <style lang="scss" scoped>
 	.container {
 		width: 100%;
-		height: 100vh;
+		// height: 100vh;
 		background: #F6F6F6;
 	}
 
